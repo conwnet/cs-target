@@ -10,12 +10,24 @@
 // +----------------------------------------------------------------------
 
 return [
-    '__pattern__' => [
-        'name' => '\w+',
-    ],
-    '[hello]'     => [
-        ':id'   => ['index/hello', ['method' => 'get'], ['id' => '\d+']],
-        ':name' => ['index/hello', ['method' => 'post']],
-    ],
+    '/' => 'index/index/login',
+    '/login' => 'index/index/login',
+    '/ilogin' => 'index/index/i_sau_login',
+    '/logout' => 'index/index/logout',
 
+    '/user/[:id]' => 'index/user/user',
+    '/users/[:page]/[:team]/[:type]' => 'index/user/users',
+    '/delete/user/:id' => 'index/user/delete',
+
+    '/teams' => 'index/team/teams',
+    '/team/[:id]' => 'index/team/team',
+    '/delete/team/[:id]' => 'index/team/delete',
+
+    '/types' => 'index/type/types',
+    '/type/[:id]' => 'index/type/type',
+    '/delete/type/[:id]' => 'index/type/delete',
+
+    '/targets/[:id]' => 'index/target/targets',
+    '/target/[:id]' => 'index/target/target',
+    '/delete/target/:id' => 'index/target/delete',
 ];

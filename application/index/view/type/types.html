@@ -1,0 +1,73 @@
+{include file="template/header" /}
+
+    <div id="sidebar-nav">
+        <ul id="dashboard-menu">
+            <li>
+                <div class="pointer">
+                    <div class="arrow"></div>
+                    <div class="arrow_border"></div>
+                </div>
+                <a href="">
+                    <p class="text-center">类型列表</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="content">
+
+        <div class="container-fluid">
+            <div id="pad-wrapper" class="users-list">
+                <div class="row-fluid header">
+                    <h3>目标类型</h3>
+                    <a href="/type" class="btn-flat success pull-right">
+                        <span>&#43;</span>
+                        创建新类型
+                    </a>
+                </div>
+
+                <div class="row-fluid table">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th class="span2 sortable">
+                                    编号
+                                </th>
+
+                                <th class="span5 sortable">
+                                    <span class="line"></span>名称
+                                </th>
+                                <th class="span2 sortable">
+                                    <span class="line"></span>操作
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach($types as $type) { ?>
+                        <tr>
+                            <td class="number"></td>
+                            <td>{$type->name}</td>
+                            <td><a href="/type/{$type->id}">查看</a> <a href="/delete/type/{$type->id}">删除</a></td>
+                        </tr>
+                        <?php } ?>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pagination pull-right">
+                    <ul>
+                        <li><a href="javascript:void(0);">&#8249;</a></li>
+                        <li><a href="javascript:void(0);">&#8250;</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+    var vs = document.getElementsByClassName('number');
+    for(var i = 0; i < vs.length; i++) {
+        vs[i].innerHTML = i + 1;
+    }
+</script>
+</body>
+</html>

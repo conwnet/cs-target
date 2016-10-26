@@ -1,0 +1,55 @@
+{include file="template/header" /}
+
+    <div class="content wide-content">
+        <div class="container-fluid">
+            <div class="settings-wrapper" id="pad-wrapper">
+                <div class="span3 avatar-box">
+                </div>
+
+                <div class="span7 personal-info">
+
+                    <?php if(session('message') == 'add_success') { ?>
+                    <div class="alert alert-success">
+                        添加成功！
+                    </div>
+                    <?php } else if(session('message') == 'update_success') { ?>
+                    <div class="alert alert-success">
+                        更新成功！
+                    </div>
+                    <?php } ?>
+                    <h5 class="personal-title">我的目标</h5>
+                    <form action="" method="post">
+                        <input type="hidden" name="id" value="{$target ? $target->id : '-1'}" />
+                        <div class="field-box">
+                            <label>标题：</label>
+                            <input class="span5 inline-input" name="title" type="text" value="{$target ? $target->title : ''}" placeholder="简单介绍我的目标" />
+                        </div>
+                        <div class="field-box">
+                            <label>开始时间：</label>
+                            <input class="span5 inline-input" name="start_time" type="date" value="{$target ? $target->start_time : ''}" placeholder="" />
+                        </div>
+                        <div class="field-box">
+                            <label>完成时间：</label>
+                            <input class="span5 inline-input" name="achieve_time" type="date" value="{$target ? $target->achieve_time : ''}" placeholder="" />
+                        </div>
+                        <div class="field-box">
+                            <label>类型：</label>
+                            <?php foreach($types as $type) { ?>
+                            <input type="radio" name="type_id" value="{$type->id}" style="margin-left:10px; height:39px;" {$type.id == $target.type_id ? 'checked="checked" ' : ''}/> {$type->name}
+                            <?php } ?>
+                        </div>
+                        <div class="field-box">
+                            <label>详细内容：</label>
+                            <textarea name="detail" rows="5" class="span5">{$target ? $target->detail : ''}</textarea>
+                        </div>
+                        <div class="span6 field-box actions">
+                            <input type="submit" class="btn-glow primary" value="更新目标" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

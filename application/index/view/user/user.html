@@ -1,0 +1,92 @@
+{include file="template/header" /}
+
+    <div class="content wide-content">
+        <div class="container-fluid">
+            <div class="settings-wrapper" id="pad-wrapper">
+                <div class="span3 avatar-box">
+                </div>
+
+                <div class="span7 personal-info">
+                    <?php if(session('message') == 'no_password') { ?>
+                    <div class="alert alert-danger">
+                        你还未设置自己的密码，请先设置自己的密码！
+                    </div>
+                    <?php } else if(session('message') == 'update_success') { ?>
+                    <div class="alert alert-success">
+                        更新成功！
+                    </div>
+                    <?php } else if(session('message') == 'denied') { ?>
+                    <div class="alert alert-danger">
+                        密码错误，更新失败！
+                    </div>
+                    <?php } ?>
+                    <h5 class="personal-title">个人信息</h5>
+                    <form action="" method="post">
+                        <input type="hidden" name="number" value="{$user->username}" />
+                        <div class="field-box">
+                            <label>学号：</label>
+                            <div style="margin-left:4px; height:39px;">{$user->username}</div>
+                        </div>
+                        <div class="field-box">
+                            <label>姓名：</label>
+                            <input class="span5 inline-input" name="name" type="text" value="{$user->name}" placeholder="请输入你的姓名" />
+                        </div>
+                        <div class="field-box">
+                            <label>性别：</label>
+                            <input type="radio" name="sex" value="0" <?php if($user->sex == 0) echo 'checked="checked" ';?>/> 男
+                            <input type="radio" name="sex" value="1" style="margin-left:10px; height:39px;" <?php if($user->sex == 1) echo 'checked="checked" ';?> /> 女
+                        </div>
+                        <div class="field-box">
+                            <label>班级</label>
+                            <div class="ui-select">
+                                <select name="team_id">
+                                    <option value="0">请选择班级</option>
+                                    <?php foreach($teams as $team) { ?>
+                                    <option value="{$team->id}" {$user->team_id == $team->id ? 'selected="selected"' : ''}>{$team->number}</option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="field-box">
+                            <label>生日：</label>
+                            <input class="span5 inline-input" name="birthday" type="date" value="{$user->birthday}" />
+                        </div>
+                        <div class="field-box">
+                            <label>电子邮件：</label>
+                            <input class="span5 inline-input" name="email" type="text" value="{$user->email}" placeholder="请输入你的电子邮件" />
+                        </div>
+                        <div class="field-box">
+                            <label>电话号码：</label>
+                            <input class="span5 inline-input" name="phone" type="text" value="{$user->phone}" placeholder="请输入你的电话号码" />
+                        </div>
+                        <div class="field-box">
+                            <label>家庭住址：</label>
+                            <input class="span5 inline-input" name="address" name="address" type="text" value="{$user->address}" placeholder="请输入你的电话号码" />
+                        </div>
+                        <div class="field-box">
+                            <label>旧密码：</label>
+                            <input class="span5 inline-input" name="password" type="password" value="" placeholder="未设置请留空" />
+                        </div>
+                        <div class="field-box">
+                            <label>新密码：</label>
+                            <input class="span5 inline-input" name="new_password" type="password" value="" placeholder="如不修改密码请留空" />
+                        </div>
+                        <div class="field-box">
+                            <label>确认密码：</label>
+                            <input class="span5 inline-input" name="re_password" type="password" value="" placeholder="如不修改密码请留空" />
+                        </div>
+                        <div class="field-box">
+                            <label>备注：</label>
+                            <textarea name="remark" class="span5">{$user->remark}</textarea>
+                        </div>
+                        <div class="span6 field-box actions">
+                            <input type="submit" class="btn-glow primary" value="更新资料" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

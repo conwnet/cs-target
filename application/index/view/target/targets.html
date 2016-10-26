@@ -1,0 +1,82 @@
+{include file="template/header" /}
+
+    <div id="sidebar-nav">
+        <ul id="dashboard-menu">
+            <li>
+                <div class="pointer">
+                    <div class="arrow"></div>
+                    <div class="arrow_border"></div>
+                </div>
+                <a href=""><p class="text-center">{$user->name}</p></a>
+            </li>
+            <li>
+                <a href="/user/{$user->id}"><p class="text-center">更多信息</p></a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="content">
+
+        <div class="container-fluid">
+            <div id="pad-wrapper" class="users-list">
+                <div class="row-fluid header">
+                    <h3>目标列表</h3>
+                    <a href="/target" class="btn-flat success pull-right">
+                        <span>&#43;</span>
+                        创建新目标
+                    </a>
+                </div>
+
+                <div class="row-fluid table">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th class="span1 sortable">
+                                    编号
+                                </th>
+                                <th class="span3 sortable">
+                                    <span class="line"></span>标题
+                                </th>
+                                <th class="span3 sortable">
+                                    <span class="line"></span>开始时间
+                                </th>
+                                <th class="span3 sortable">
+                                    <span class="line"></span>完成时间
+                                </th>
+                                <th class="span2 sortable">
+                                    <span class="line"></span>操作
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach($targets as $target) { ?>
+                        <tr>
+                            <td class="number"></td>
+                            <td>{$target->title}</td>
+                            <td>{$target->start_time}</td>
+                            <td>{$target->achieve_time}</td>
+                            <td><a href="/target/{$target->id}">编辑</a> <a href="/delete/target/{$target->id}">删除</a></td>
+                        </tr>
+                        <?php } ?>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pagination pull-right">
+                    <ul>
+                        <li><a href="javascript:void(0);">&#8249;</a></li>
+                        <li><a href="javascript:void(0);">&#8250;</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<script>
+    var vs = document.getElementsByClassName('number');
+    for(var i = 0; i < vs.length; i++) {
+        vs[i].innerHTML = i + 1;
+    }
+</script>
+</body>
+</html>

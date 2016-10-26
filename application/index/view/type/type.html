@@ -1,0 +1,36 @@
+{include file="template/header" /}
+
+    <div class="content wide-content">
+        <div class="container-fluid">
+            <div class="settings-wrapper" id="pad-wrapper">
+                <div class="span3 avatar-box">
+                </div>
+
+                <div class="span7 personal-info">
+
+                    <?php if(session('message') == 'add_success') { ?>
+                    <div class="alert alert-success">
+                        添加成功！
+                    </div>
+                    <?php } else if(session('message') == 'update_success') { ?>
+                    <div class="alert alert-success">
+                        更新成功！
+                    </div>
+                    <?php } ?>
+                    <h5 class="personal-title">{$type ? $type->name : '新增类型'}</h5>
+                    <form action="" method="post">
+                        <input type="hidden" name="id" value="{$type ? $type->id : '-1'}" />
+                        <div class="field-box">
+                            <label>名称：</label>
+                            <input class="span5 inline-input" name="name" type="text" value="{$type ? $type->name : ''}" placeholder="" />
+                        </div>
+                        <div class="span6 field-box actions">
+                            <input type="submit" class="btn-glow primary" value="更新信息" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

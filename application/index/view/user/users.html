@@ -1,0 +1,102 @@
+{include file="template/header" /}
+
+    <div id="sidebar-nav">
+        <ul id="dashboard-menu">
+            <li>
+                <div class="pointer">
+                    <div class="arrow"></div>
+                    <div class="arrow_border"></div>
+                </div>
+                <a href="/users">
+                    <p class="text-center">学生列表</p>
+                </a>
+            </li>
+            <li>
+                <a class="dropdown-toggle" href="#">
+                    <p class="text-center">分类 &#43;</p>
+                </a>
+                <ul class="submenu">
+                    <?php foreach($types as $v) { ?>
+                    <li><a href="/users/0/{$team}/{$v->id}" class="text-center">{$v->name}</a></li>
+                    <?php } ?>
+                </ul>
+            </li>
+            <?php foreach($teams as $year => $_team) { ?>
+            <li>
+                <a class="dropdown-toggle" href="#">
+                    <p class="text-center">{$year} &#43;</p>
+                </a>
+                <ul class="submenu">
+                    <?php foreach($_team as $v) { ?>
+                    <li><a href="/users/0/{$v->id}/{$type}" class="text-center">{$v->number}</a></li>
+                    <?php } ?>
+                </ul>
+            </li>
+            <?php } ?>
+        </ul>
+    </div>
+
+    <div class="content">
+
+        <div class="container-fluid">
+            <div id="pad-wrapper" class="users-list">
+                <div class="row-fluid header">
+                    <h3>学生列表</h3>
+                </div>
+
+                <div class="row-fluid table">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th class="span1 sortable">
+                                    编号
+                                </th>
+                                <th class="span3 sortable">
+                                    <span class="line"></span>姓名
+                                </th>
+                                <th class="span3 sortable">
+                                    <span class="line"></span>学号
+                                </th>
+                                <th class="span3 sortable">
+                                    <span class="line"></span>班级
+                                </th>
+                                <th class="span2 sortable">
+                                    <span class="line"></span>操作
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach($users as $user) { ?>
+                        <tr>
+                            <td class="number"></td>
+                            <td>{$user->name}</td>
+                            <td>{$user->username}</td>
+                            <td>{$user->team_id}</td>
+                            <td><a href="/targets/{$user->id}">查看</a> <a href="/delete/user/{$user->id}">删除</a></td>
+                        </tr>
+                        <?php } ?>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pagination pull-right">
+                    <ul>
+                        <li><a href="/users/{$page - 1}/{$team}/{$type}">&#8249;</a></li>
+                        <li><a href="/users/{$page + 1}/{$team}/{$type}">&#8250;</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script src="/static/admin/js/bootstrap.min.js"></script>
+<script src="/static/admin/js/jquery.min.js"></script>
+<script src="/static/admin/js/theme.js"></script>
+<script>
+    var vs = document.getElementsByClassName('number');
+    var start = {$page} * 10;
+    for(var i = 0; i < vs.length; i++) {
+        vs[i].innerHTML = start + i + 1;
+    }
+</script>
+</body>
+</html>

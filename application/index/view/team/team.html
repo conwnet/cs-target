@@ -1,0 +1,49 @@
+{include file="template/header" /}
+
+    <div class="content wide-content">
+        <div class="container-fluid">
+            <div class="settings-wrapper" id="pad-wrapper">
+                <div class="span3 avatar-box">
+                </div>
+
+                <div class="span7 personal-info">
+
+                    <?php if(session('message') == 'add_success') { ?>
+                    <div class="alert alert-success">
+                        添加成功！
+                    </div>
+                    <?php } else if(session('message') == 'update_success') { ?>
+                    <div class="alert alert-success">
+                        更新成功！
+                    </div>
+                    <?php } ?>
+                    <h5 class="personal-title">{$team ? $team->name : '新增班级'}</h5>
+                    <form action="" method="post">
+                        <input type="hidden" name="id" value="{$team ? $team->id : '-1'}" />
+                        <div class="field-box">
+                            <label>班号：</label>
+                            <input class="span5 inline-input" name="number" type="text" value="{$team ? $team->number : ''}" placeholder="" />
+                        </div>
+                        <div class="field-box">
+                            <label>名称：</label>
+                            <input class="span5 inline-input" name="name" type="text" value="{$team ? $team->name : ''}" placeholder="" />
+                        </div>
+                        <div class="field-box">
+                            <label>年份：</label>
+                            <input class="span5 inline-input" name="year" type="text" value="{$team ? $team->year : ''}" placeholder="" />
+                        </div>
+
+                        <div class="field-box">
+                            <label>总人数：</label>
+                            <input class="span5 inline-input" name="user_sum" type="text" value="{$team ? $team->user_sum : ''}" placeholder="" />
+                        </div>
+                        <div class="span6 field-box actions">
+                            <input type="submit" class="btn-glow primary" value="更新信息" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
