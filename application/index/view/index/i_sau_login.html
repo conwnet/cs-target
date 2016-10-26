@@ -23,6 +23,13 @@
 
 <div class="page-container">
     <h1>数字沈航登录</h1>
+    <?php if(session('message') == 'denied') { ?>
+    <br /><p style="color:red;">数字沈航密码错误！</p>
+    <?php } else if(session('message') == 'timeout') { ?>
+    <br /><p style="color:red;">数字沈航目前状态不可用！</p>
+    <?php } else if(session('message') == 'unknow') { ?>
+    <br /><p style="color:red;">未知错误！</p>
+    <?php } ?>
     <form action="" method="post">
         <input type="text" name="username" class="username" placeholder="学号">
         <input type="password" name="password" class="password" placeholder="数字沈航密码">

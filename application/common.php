@@ -34,10 +34,10 @@ function i_sau_validate($username, $password) {
 
     if(!$content) {
         return "timeout";
-    } if(preg_match('/window\.location="cas\.sau\.edu\.cn:8080\/cas"/i', $content)) {
-        return "ok";
     } else if(preg_match('/mistake_notice/i', $content)){
         return 'denied';
+    } else if(preg_match('/window\.location="cas\.sau\.edu\.cn:8080\/cas"/i', $content)) {
+        return "ok";
     } else {
         return "unknow";
     }

@@ -17,6 +17,9 @@ class Index extends Controller
                 session('id', $user->id);
                 session('power', $user->power);
                 return $this->redirect('/user');
+            } else {
+                Session::flash('message', 'denied');
+                return $this->redirect('/login');
             }
         }
         return $this->fetch();
@@ -35,11 +38,14 @@ class Index extends Controller
                 session('power', 1);
                 return $this->redirect('/user');
             } else if($result == 'denied') {
-                return $this->error('数字沈航帐号或密码不正确！');
+                Session::flash('message', 'denied');
+                return $this->redirect('/ilogin');
             } else if($result == 'timeout') {
-                return $this->error('数字沈航目前状态不可用！');
+                Session::flash('message', 'timeout');
+                return $this->redirect('/ilogin');
             } else {
-                return $this->error('未知错误！');
+                Session::flash('message', 'unknow');
+                return $this->redirect('/ilogin');
             }
         } else {
             return $this->fetch();
