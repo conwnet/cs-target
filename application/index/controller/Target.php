@@ -10,7 +10,8 @@ class Target extends Controller
         if(session('power') || !model\User::get(['id' => $id])) $id = session('id');
         $user = model\User::get(['id' => $id]);
         $targets = model\Target::where(['user_id' => $id])->select();
-
+        foreach($targets as $target)
+            $target->type = model\Type::get($target->type_id)->name;
         $this->assign('user', $user);
         $this->assign('targets', $targets);
         $this->assign('title', '规划列表');

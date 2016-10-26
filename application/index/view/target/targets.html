@@ -37,11 +37,14 @@
                                 <th class="span3 sortable">
                                     <span class="line"></span>标题
                                 </th>
-                                <th class="span3 sortable">
+                                <th class="span2 sortable">
                                     <span class="line"></span>开始时间
                                 </th>
-                                <th class="span3 sortable">
+                                <th class="span2 sortable">
                                     <span class="line"></span>完成时间
+                                </th>
+                                <th class="span2 sortable">
+                                    <span class="line"></span>类型
                                 </th>
                                 <th class="span2 sortable">
                                     <span class="line"></span>操作
@@ -55,7 +58,8 @@
                             <td>{$target->title}</td>
                             <td>{$target->start_time}</td>
                             <td>{$target->achieve_time}</td>
-                            <td><a href="/target/{$target->id}">编辑</a> <a href="/delete/target/{$target->id}">删除</a></td>
+                            <td>{$target->type}</td>
+                            <td><a href="/target/{$target->id}">查看</a> <a href="/delete/target/{$target->id}">删除</a></td>
                         </tr>
                         <?php } ?>
                         </tbody>
