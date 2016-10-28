@@ -17,11 +17,13 @@ function i_sau_validate($username, $password) {
     $login_url  = 'http://cas.sau.edu.cn:8080/cas/login';
     $ch = curl_init($login_url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_TIMEOUT_MS, 10000);
     $content = curl_exec($ch);
     $csrf_token_matches = [];
     $csrf_token = '';
     preg_match('/<input type="hidden" name="lt" value="(.*?)" \/>/i' ,$content, $csrf_token_matches);
-    $csrf_token = $csrf_token_matches[1];
+    if($csrf_token_matches)
+        $csrf_token = $csrf_token_matches[1];
     $login_url  = 'http://cas.sau.edu.cn:8080/cas/login';
     $password = md5($password);
     $post_fields = "serviceName=0&loginErrCnt=0&username=$username&password=$password&lt=$csrf_token";
@@ -29,6 +31,7 @@ function i_sau_validate($username, $password) {
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $post_fields);
+    curl_setopt($ch, CURLOPT_TIMEOUT_MS, 10000);
     $content = curl_exec($ch);
     curl_close($ch);
 
